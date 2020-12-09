@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="Among-Us.css">
+			<link href="https://fonts.googleapis.com/css2?family=Chilanka&display=swap" rel="stylesheet">
+				<meta charset="UTF-8">
+					<meta name="viewport" content="initial-scale=1.0">
+						<title>Among Us Shop | Be the Imposter!</title>
+						<script>
+							function magnify(imgID, zoom) {
+								var img, glass, w, h, bw;
+								img = document.getElementById(imgID);
+
+							 	/* Create magnifier glass: */
+							  	glass = document.createElement("DIV");
+							  	glass.setAttribute("class", "img-magnifier-glass");
+
+							  	/* Insert magnifier glass: */
+							  	img.parentElement.insertBefore(glass, img);
+
+								/* Set background properties for the magnifier glass: */
+								glass.style.backgroundImage = "url('" + img.src + "')";
+								glass.style.backgroundRepeat = "no-repeat";
+								glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+								bw = 4;
+								w = glass.offsetWidth / 3;
+								h = glass.offsetHeight / 3;
+
+								  /* Execute a function when someone moves the magnifier glass over the image: */
+								glass.addEventListener("mousemove", moveMagnifier);
+								img.addEventListener("mousemove", moveMagnifier);
+
+								  /*and also for touch screens:*/
+								glass.addEventListener("touchmove", moveMagnifier);
+								img.addEventListener("touchmove", moveMagnifier);
+								function moveMagnifier(e) {
+								    var pos, x, y;
+								    /* Prevent any other actions that may occur when moving over the image */
+								    e.preventDefault();
+								    /* Get the cursor's x and y positions: */
+								    pos = getCursorPos(e);
+								    x = pos.x;
+								    y = pos.y;
+								    /* Prevent the magnifier glass from being positioned outside the image: */
+								    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+								    if (x < w / zoom) {x = w / zoom;}
+								    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+								    if (y < h / zoom) {y = h / zoom;}
+								    /* Set the position of the magnifier glass: */
+								    glass.style.left = (x - w) + "px";
+								    glass.style.top = (y - h) + "px";
+								    /* Display what the magnifier glass "sees": */
+								    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+								  }
+
+								function getCursorPos(e) {
+								    var a, x = 0, y = 0;
+								    e = e || window.event;
+								    /* Get the x and y positions of the image: */
+								    a = img.getBoundingClientRect();
+								    /* Calculate the cursor's x and y coordinates, relative to the image: */
+								    x = e.pageX - a.left;
+								    y = e.pageY - a.top;
+								    /* Consider any page scrolling: */
+								    x = x - window.pageXOffset;
+								    y = y - window.pageYOffset;
+								    return {x : x, y : y};
+								  }
+								}
+						</script>
+	</head>
+		<body>
+			<div class="topnav">
+				<a href="index.html">Home</a>
+				<a href="AU_Crew Page.html">Crew</a>
+				<a href="AU_Rules.html">Rules</a>
+				<a href="AU_MapPage.html">Maps</a>
+				<a href="Among Us Store.html" class="active">Shop</a>
+			</div>
+			</br>
+			<h1>There is a <em>Shopper</em> among us</h1>
+			<img id="firstpicture" src= "images/Start-of-game.png" alt="game-start"/>
+			</br>
+			<div>
+				<table id="shop">
+					<tr>
+						<th>Clothing</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<tr>
+						<td>
+							<div class="img-magnifier-container">
+								<center><img id="store-img1" class="table-img-store" alt="among us shirt" src= "https://ih1.redbubble.net/image.1757777105.7089/ssrco,slim_fit_t_shirt,womens,fafafa:ca443f4786,front,square_product,600x600.jpg"></center>
+							</div>
+							</br>
+							<details>
+								<summary>
+									<strong>Too Cute T-Shirt</strong>
+								</summary>
+								<div id="shirt">
+									<ul>
+										<li>Your everyday comfy tee</li>
+										<li>Slim fit</li>
+										<li>Midweight 4.2 oz</li>
+										<li>145 g fabric</li>
+										<li>T-shirts are 100% cotton</li>
+									</ul>
+								</div>
+							</details>
+
+							<center>
+								<p id="price1"> $25 </p>
+							</center>
+							<!--button-->								
+							<center><input type="button" id="buy1" value="Add to Cart" onmouseover="this.style.backgroundColor='pink'" onmouseleave="this.style.backgroundColor='#f44336'" class="shoppageButton">
+									</center>
+						</td>
+						<td>
+								<center><img id="store-img2" class="table-img-store" alt="sus hoodie" src= "https://i.etsystatic.com/8164139/r/il/976f95/2630749311/il_794xN.2630749311_8dev.jpg"></center>
+							</br>
+							<details>
+								<summary>
+									<strong>Red Sus Hoodie</strong>
+								</summary>
+								<div id="clothing">
+									<ul>
+										<li>Your everyday comfy hoodie</li>
+										<li>Comfortable fit</li>
+										<li>Handmade</li>
+										<li>You look sus with this hoodie</li>
+										<li>100% cotton</li>
+									</ul>
+									</div>
+							</details>
+							<center><p id="price2"> $22 </p></center>
+							<!--button-->
+							<center>
+								<input type="button" id="buy2" value="Add to Cart" onmouseover="this.style.backgroundColor='pink'" onmouseleave="this.style.backgroundColor='#f44336'" class="shoppageButton">
+							</center>
+						</td>
+						<td>
+								<center><img id="store-img3" class="table-img-store" alt="Black/Cyan Sus hoodie" src= "https://i.etsystatic.com/22512964/r/il/3bc6d8/2614935823/il_794xN.2614935823_6413.jpg"></center>
+							</br>
+							<details>
+								<summary>
+									<strong>Black/Cyan SUS Hoodie</strong>
+								</summary>
+									<div class="merchandise">
+										<ul>
+											<li>High Quality</li>
+											<li>100% Cotton</li>
+											<li>Same-day delivery</li>
+											<li>Handmade</li>
+											<li>Choose your size</li>
+										</ul>
+									</div>
+							</details>
+							<center><p id="price3"> $20 </p></center>
+								<!--button-->
+							<center>
+								<input type="button" id="buy3" value="Add to Cart" onmouseover="this.style.backgroundColor='pink'" onmouseleave="this.style.backgroundColor='#f44336'" class="shoppageButton">
+							</center>
+					</tr>
+					<tr>
+						<th>Accessories</th>
+						<th></th>
+						<th></th>
+					</tr>
+					<tr>
+						<td>
+								<center><img id="store-img4" class="table-img-store" alt="cosplay hat" src= "https://canary.contestimg.wish.com/api/webimage/5faab06098e412dd0b9ad31e-normal.jpg"></center>
+							</div>
+							</br>
+							<details>
+								<summary>
+									<strong>Cosplay Hat</strong>
+								</summary>
+									<div id="hat">
+										<ul>
+											<li>100% cotton</li>
+											<li>Best quality and fashion</li>
+											<li>Perfect for winter</li>
+											<li>1 knitting hat</li>
+											<li>Choose your color</li>
+										</ul>
+									</div>
+							</details>
+								<center>
+									<p id="price4"> $5 </p>
+								</center>
+								<!--button-->
+								<center>
+									<input id="buy4" type="button" value="Add to Cart" onmouseover="this.style.backgroundColor='pink'" onmouseleave="this.style.backgroundColor='#f44336'" class="shoppageButton">
+								</center>
+						</td>
+						<td>
+								<center><img id="store-img5" class="table-img-store" alt="SUS iphone Case" src= "https://ih1.redbubble.net/image.1779036342.5338/icr,iphone_12_soft,back,a,x600-pad,600x600,f8f8f8.jpg"></center>
+							</br>
+							<details>
+								<summary>
+									<strong>SUS iPhone Case</strong>
+								</summary>
+										<div class="merchandise">
+											<ul>
+												<li>Durable flexible case</li>
+												<li>Shop absorbent</li>
+												<li>Colors are ink printed</li>
+												<li>Weight 26 g</li>
+												<li>Thickness 1.6 mm</li>
+											</ul>
+										</div>
+							</details>
+								<center>
+									<p id="price5"> $9 </p>
+								</center>
+								<!--button-->
+								<center>
+									<input id="buy5" type="button" value="Add to Cart" onmouseover="this.style.backgroundColor='pink'" onmouseleave="this.style.backgroundColor='#f44336'" class="shoppageButton">
+								</center>
+							</td>
+							<td>
+								<div class="img-magnifier-container">
+									<center>
+										<a href="https://www.etsy.com/ca/listing/858872776/among-us-impostorcrewmate-button-or?gpla=1&gao=1&&utm_source=google&utm_medium=cpc&utm_campaign=shopping_ca_en_ca_e-accessories-patches_and_pins-pins_and_pinback_buttons&utm_custom1=_k_Cj0KCQiAh4j-BRCsARIsAGeV12DmBDp4dp-L3AP7NQuAZaUPPUy5uXHJ8OWv1NEB5-pMqa9BS1FAwosaAtT0EALw_wcB_k_&utm_content=go_318285405_19407682245_75020849205_aud-463075091998:pla-106551384275_c__858872776enca_246065524&utm_custom2=318285405&gclid=Cj0KCQiAh4j-BRCsARIsAGeV12DmBDp4dp-L3AP7NQuAZaUPPUy5uXHJ8OWv1NEB5-pMqa9BS1FAwosaAtT0EALw_wcB">
+										<img id="store-img6" class="table-img-store" alt="Crewmat button or magnet" src= "https://i.etsystatic.com/8488310/r/il/e7255c/2582771125/il_794xN.2582771125_7vnh.jpg">
+										</a>
+									</center>
+								</div>
+								</br>
+								<details>
+									<summary>
+										<strong>Crewmate Button or Magnet</strong>
+									</summary>
+										<div class="merchandise">
+											<ul>
+												<li>Durable</li>
+												<li>Adorable</li>
+												<li>Handmade</li>
+												<li>Customizable</li>
+												<li>Size 1.5 in</li>
+											</ul>
+										</div>
+								</details>
+									<center>
+										<p id="price6"> $5 </p>
+									</center>
+									<!--button-->
+									<center>
+										<input id="buy6" type="button" value="Add to Cart" onmouseover="this.style.backgroundColor='pink'" onmouseleave="this.style.backgroundColor='#f44336'" class="shoppageButton">
+									</center>
+					</tr>
+				</table>
+			</div>
+			</br>
+			<h2 id="Cart">Cart Total:</h2>
+			<center><p id="Total">0</p></center>
+			<h2>Enter Payment Amount:</h2>
+			<center>
+				<input type="number" id="payment">
+				<input type="button" id="confirmPay" value="Confirm Purchase">
+			</center>
+			<center>
+				<img src="images/gif/crewmate.gif" alt="crewmate gif">
+			</center>
+		<script>
+			magnify("store-img1", 2);
+
+			var buyItem1=document.querySelector("#buy1");
+         	var buyItem2=document.querySelector("#buy2");
+         	var buyItem3=document.querySelector("#buy3");
+         	var buyItem4=document.querySelector("#buy4");
+         	var buyItem5=document.querySelector("#buy5");
+         	var buyItem6=document.querySelector("#buy6");
+			
+			var priceOne=document.querySelector("#price1");
+         	var priceTwo=document.querySelector("#price2");
+         	var priceThree=document.querySelector("#price3");
+         	var priceFour=document.querySelector("#price4");
+         	var priceFive=document.querySelector("#price5");
+         	var priceSix=document.querySelector("#price6");
+			
+			var total=document.querySelector("#Total");
+			var payment=document.querySelector("#payment");
+			var confirmPay=document.querySelector("#confirmPay");
+
+			buyItem1.addEventListener("click", clickToBuy);
+         	buyItem2.addEventListener("click", clickToBuy);
+         	buyItem3.addEventListener("click", clickToBuy);
+         	buyItem4.addEventListener("click", clickToBuy);
+         	buyItem5.addEventListener("click", clickToBuy);
+         	buyItem6.addEventListener("click", clickToBuy);
+			
+			priceOne = 25
+			priceTwo=22
+			priceThree=20
+			priceFour=5
+			priceFive=9
+			priceSix=5
+			sum=0
+			
+			confirmPay.addEventListener("click",confirmPurchase);
+			
+			function clickToBuy(){
+             if(this.id=="buy1"){
+                 document.querySelector("#buy1").disabled = true;
+                 document.querySelector("#Total").textContent = (sum += priceOne)
+             } 
+             else if(this.id=="buy2"){
+                 document.querySelector("#buy2").disabled = true;
+                 document.querySelector("#Total").textContent = (sum += priceTwo)
+             } 
+             else if(this.id=="buy3"){
+                 document.querySelector("#buy3").disabled = true;
+                 document.querySelector("#Total").textContent = (sum += priceThree);
+             } 
+             else if(this.id=="buy4"){
+                 document.querySelector("#buy4").disabled = true;
+                 document.querySelector("#Total").textContent = (sum += priceFour)
+             } 
+             else if(this.id=="buy5"){
+                 document.querySelector("#buy5").disabled = true;
+                 document.querySelector("#Total").textContent = (sum += priceFive)
+             } 
+             else if(this.id=="buy6"){
+                 document.querySelector("#buy6").disabled = true;
+                 document.querySelector("#Total").textContent = (sum += priceSix);
+             } 
+         }
+         
+         function confirmPurchase(){
+           if(parseInt(payment.value)>=parseInt(total.textContent)){
+             alert("Purchase complete"); 
+           }
+           else{
+             alert("Payment amount is less than cart total"); 
+           } 
+         } 
+		</script>
+	</body>
+</html>
